@@ -33,8 +33,13 @@ export const todoSlice = createSlice({
         );
       }
     },
+    deleteTodo: (state, action) => {
+      const { id } = action.payload;
+      state.todoList = state.todoList.filter((item) => item.id !== id);
+      window.localStorage.setItem('todoList', JSON.stringify(state.todoList));
+    },
   },
 });
 
-export const { addTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo } = todoSlice.actions;
 export default todoSlice.reducer;

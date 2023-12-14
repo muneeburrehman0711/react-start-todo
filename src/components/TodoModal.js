@@ -28,6 +28,7 @@ function TodoModal({ modalOpen, setModalOpen }) {
       toast.error("Title can't be empty ");
     }
   };
+
   return (
     // <div>
     modalOpen && (

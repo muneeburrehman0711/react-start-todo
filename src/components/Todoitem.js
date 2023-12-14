@@ -1,11 +1,17 @@
 import React from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
+
+import { useDispatch } from 'react-redux';
 import styles from '../styles/modules/todoItem.module.scss';
 import { getClasses } from '../utils/getClasses';
+import { deleteTodo } from '../slices/todoSlice';
 
 function Todoitem({ todo }) {
+  const dispatch = useDispatch();
   function handleDelete(e) {
-    console.log(e.target);
+    console.log('id', todo.id);
+
+    dispatch(deleteTodo({ id: todo.id }));
   }
   function handleEdit(e) {
     console.log(e.target);
