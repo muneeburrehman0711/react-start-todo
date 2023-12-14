@@ -4,6 +4,12 @@ import styles from '../styles/modules/todoItem.module.scss';
 import { getClasses } from '../utils/getClasses';
 
 function Todoitem({ todo }) {
+  function handleDelete(e) {
+    console.log(e.target);
+  }
+  function handleEdit(e) {
+    console.log(e.target);
+  }
   return (
     <div className={styles.item}>
       <div className={styles.todoDetails}>
@@ -22,10 +28,18 @@ function Todoitem({ todo }) {
       </div>
       <div className={styles.todoActions}>
         <div className={styles.icon}>
-          <MdDelete />
+          <MdDelete
+            onClick={(e) => {
+              handleDelete(e);
+            }}
+          />
         </div>
         <div className={styles.icon}>
-          <MdEdit />
+          <MdEdit
+            onClick={(e) => {
+              handleEdit(e);
+            }}
+          />
         </div>
       </div>
     </div>
