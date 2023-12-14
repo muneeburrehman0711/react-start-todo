@@ -7,8 +7,15 @@ function Todoitem({ todo }) {
     <div className={StyleSheet.item}>
       <div className={styles.todoDetails}>
         [ ]
-        <div className={styles.text}>
-          <p className={getClasses([styles.todoText])}>{todo.title}</p>
+        <div className={styles.texts}>
+          <p
+            className={getClasses([
+              styles.todoText,
+              todo.status === 'complete' && styles['todoText--completed'],
+            ])}
+          >
+            {todo.title}
+          </p>
         </div>
       </div>
     </div>
