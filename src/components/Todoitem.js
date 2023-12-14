@@ -4,7 +4,7 @@ import { getClasses } from '../utils/getClasses';
 
 function Todoitem({ todo }) {
   return (
-    <div className={StyleSheet.item}>
+    <div className={styles.item}>
       <div className={styles.todoDetails}>
         [ ]
         <div className={styles.texts}>
@@ -16,6 +16,7 @@ function Todoitem({ todo }) {
           >
             {todo.title}
           </p>
+          <p className={styles.time}>{todo.time}</p>
         </div>
       </div>
     </div>
