@@ -2,11 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 import styles from '../styles/modules/todoItem.module.scss';
 import { getClasses } from '../utils/getClasses';
 import { deleteTodo, updateTodo } from '../slices/todoSlice';
 import TodoModal from './TodoModal';
 import CheckButton from './CheckButton';
+
+const child = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 function Todoitem({ todo }) {
   const dispatch = useDispatch();
@@ -39,7 +48,7 @@ function Todoitem({ todo }) {
   };
   return (
     <>
-      <div className={styles.item}>
+      <motion.div className={styles.item} variants={child}>
         <div className={styles.todoDetails}>
           <CheckButton checked={checked} handleCheck={handleCheck} />
           <div className={styles.texts}>
@@ -74,7 +83,7 @@ function Todoitem({ todo }) {
             <MdEdit />
           </div>
         </div>
-      </div>
+      </motion.div>
       <TodoModal
         type="update"
         todo={todo}
