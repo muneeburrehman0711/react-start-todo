@@ -58,7 +58,7 @@ export const todoSlice = createSlice({
             todo.status = action.payload.status;
           }
         });
-        window.localStorage.getItem('todoList', JSON.stringify(todoListArr));
+        window.localStorage.setItem('todoList', JSON.stringify(todoListArr));
         state.todoList = todoListArr;
       }
     },

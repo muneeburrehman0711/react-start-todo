@@ -7,13 +7,12 @@ import { updateFilterStatus } from '../slices/todoSlice';
 
 function AppHeader() {
   const [modalOpen, setModalOpen] = useState(false);
-  const initialFilterStatus = useSelector((state) => state.todo.filterStatus);
-  const [filterStatus, setFilterStatus] = useState();
+  const filterStatus = useSelector((state) => state.todo.filterStatus);
+  // const filterStatus = useState(initialFilterStatus);
   const dispatch = useDispatch();
 
   const updateFilter = (e) => {
-    console.log('updating select');
-    dispatch(updateFilterStatus(e.target));
+    dispatch(updateFilterStatus(e.target.value));
   };
 
   return (
