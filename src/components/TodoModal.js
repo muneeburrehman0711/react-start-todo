@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import { AnimatePresence, motion } from 'framer-motion';
+import { MdOutlineClose } from 'react-icons/md';
 import styles from '../styles/modules/modal.module.scss';
 import Button from './Button';
 import { addTodo, updateTodo } from '../slices/todoSlice';
@@ -104,6 +105,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
               exit={{ top: 40, opacity: 0 }}
             >
               <motion.div />
+              <MdOutlineClose />
             </motion.div>
             <form
               className={styles.form}
