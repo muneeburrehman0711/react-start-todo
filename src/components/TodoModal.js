@@ -31,14 +31,17 @@ const dropIn = {
 function TodoModal({ type, modalOpen, setModalOpen, todo }) {
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState('incomplete');
+  const [author, setAuthor] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
     if (type === 'update' && todo) {
       setTitle(todo.title);
       setStatus(todo.status);
+      setAuthor(todo.author);
     } else {
       setTitle('');
       setStatus('incomplete');
+      setAuthor('');
     }
   }, [type, todo, modalOpen]);
   const handleSubmit = (e) => {
@@ -47,24 +50,30 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
       toast.error('please enter a title');
       return;
     }
-    if (title && status) {
+    if (title && status && author) {
       if (type === 'add') {
         dispatch(
           addTodo({
             id: uuid(),
             title,
             status,
+            author,
             time: new Date().toLocaleDateString(),
           })
         );
         toast.success('Task added successfully');
       }
       if (type === 'update') {
-        if (todo.title !== title || todo.status !== status) {
+        if (
+          todo.title !== title ||
+          todo.status !== status ||
+          todo.author !== author
+        ) {
           dispatch(
             updateTodo({
               ...todo,
               title,
+              author,
               status,
             })
           );
@@ -137,6 +146,15 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
                   <option value="incomplete">Incomplete</option>
                   <option value="complete">Complete</option>
                 </select>
+              </label>
+              <label htmlFor="author">
+                author
+                <input
+                  type="text"
+                  id="author"
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
+                />
               </label>
               <div className={styles.buttoncontainer}>
                 <Button type="submit" variant="primary">

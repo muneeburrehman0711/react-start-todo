@@ -60,6 +60,8 @@ function Todoitem({ todo }) {
             >
               {todo.title}
             </p>
+            <p className={getClasses([styles.todoText])}> By {todo.author}</p>
+
             <p className={styles.time}>{todo.time}</p>
           </div>
         </div>
